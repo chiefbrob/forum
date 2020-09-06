@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -15,8 +16,25 @@ class ThreadsTest extends TestCase
      */
     public function testAUserCanBrowseThreads()
     {
-        $response = $this->get('/threads');
+        $thread = factory(Thread::class)->create();
+        $this->get('/threads')
+            ->assertOk()
+            ->assertViewIs('threads.index')
+            ->assertSee($thread->title);
+    }
 
-        $response->assertStatus(200);
+    /**
+     * Tests that a user can view a thread
+     *
+     * @return void
+     */
+    public function testAUserCanViewThread()
+    {
+        $thread = factory(Thread::class)->create();
+        $this->get(sprintf('/threads/%d', $thread->id))
+            ->assertOk()
+            ->assertViewIs('threads.show')
+            ->assertSee($thread->title)
+            ->assertSee($thread->body);
     }
 }
