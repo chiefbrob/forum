@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Forum'),
+    'name' => env('APP_NAME', 'Forumn'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://forum.chiefbrob.info'),
+    'url' => env('APP_URL', 'http://forumn.chiefbrob.info'),
 
     'asset_url' => env('ASSET_URL', null),
 
